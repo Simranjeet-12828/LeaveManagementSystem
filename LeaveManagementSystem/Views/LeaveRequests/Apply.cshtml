@@ -1,0 +1,43 @@
+﻿@model LeaveRequest
+
+<h2>Apply for Leave</h2>
+
+<div class="card shadow-sm p-4">
+    <form asp-action="Apply" method="post">
+
+        <div class="mb-3">
+            <label class="form-label fw-semibold">Employee ID</label>
+            <input asp-for="EmployeeId" readonly class="form-control-plaintext text-muted" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label fw-semibold">Leave Type</label>
+            <select asp-for="LeaveType" class="form-select">
+                <option value="">-- Select Leave Type --</option>
+                <option>Casual Leave</option>
+                <option>Sick Leave</option>
+                <option>Maternity Leave</option>
+                <option>Paternity Leave</option>
+                <option>Earned Leave</option>
+            </select>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label class="form-label fw-semibold">From Date</label>
+                <input asp-for="FromDate" type="date" class="form-control" />
+            </div>
+            <div class="col-md-6 mb-3">
+                <label class="form-label fw-semibold">To Date</label>
+                <input asp-for="ToDate" type="date" class="form-control" />
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label fw-semibold">Reason</label>
+            <textarea asp-for="Reason" class="form-control" rows="4" placeholder="Enter reason..."></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary px-4">Submit</button>
+    </form>
+</div>

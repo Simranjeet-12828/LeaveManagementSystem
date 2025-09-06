@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "Login";
+    var employeeList = ViewBag.EmployeeList as List<LeaveManagementSystem.Models.Employee>;
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card shadow-sm p-4 mt-4">
+            <h2 class="text-center mb-4">Employee Login</h2>
+
+            <form method="post">
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Select Employee:</label>
+                    <select name="employeeId" class="form-select" required>
+                        <option value="">-- Select Employee --</option>
+                        @foreach (var emp in employeeList)
+                        {
+                            <option value="@emp.EmployeeId">@emp.FullName (@emp.EmployeeId)</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

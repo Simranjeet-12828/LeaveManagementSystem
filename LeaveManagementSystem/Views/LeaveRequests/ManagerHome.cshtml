@@ -1,0 +1,25 @@
+﻿@{
+    ViewData["Title"] = "Manager Home";
+    var name = Context.Session.GetString("Name");
+    var email = Context.Session.GetString("Email");
+    var role = Context.Session.GetString("Role");
+}
+
+<div class="card shadow-sm p-4 mb-4 bg-white">
+    <h3 class="mb-2">Welcome, <span class="text-primary">@name</span></h3>
+    <p class="text-muted mb-0">Role: <strong>@role</strong></p>
+    <p class="text-muted">Email: <strong>@email</strong></p>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-md-5 mb-3">
+        <a asp-action="Pending" class="btn btn-primary w-100 py-3 fw-semibold">
+            View Pending Requests
+        </a>
+    </div>
+    <div class="col-md-5 mb-3">
+        <a asp-action="History" class="btn btn-dark w-100 py-3 fw-semibold">
+            View All Leave Requests
+        </a>
+    </div>
+</div>

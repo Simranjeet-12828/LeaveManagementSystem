@@ -1,0 +1,43 @@
+﻿@model List<LeaveManagementSystem.Models.LeaveRequest>
+@using Microsoft.AspNetCore.Http
+
+<h2>Pending Leave Requests</h2>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-striped align-middle">
+        <thead class="table-light">
+            <tr>
+                <th>Employee ID</th>
+                <th>Leave Type</th>
+                <th>From</th>
+                <th>To</th>
+                <th>Reason</th>
+                <th class="text-center">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var leave in Model.Where(l => l.Status == "Pending"))
+            {
+                <tr>
+                    <td>@leave.EmployeeId</td>
+                    <td>@leave.LeaveType</td>
+                    <td>@leave.FromDate.ToShortDateString()</td>
+                    <td>@leave.ToDate.ToShortDateString()</td>
+                    <td>@leave.Reason</td>
+                    <td class="text-center">
+                        <div class="d-flex justify-content-center gap-2">
+                            <form asp-action="Approve" asp-controller="LeaveRequests" method="post">
+                                <input type="hidden" name="id" value="@leave.LeaveRequestId" />
+                                <button type="submit" class="btn btn-success btn-sm">Approve</button>
+                            </form>
+                            <form asp-action="Reject" asp-controller="LeaveRequests" method="post">
+                                <input type="hidden" name="id" value="@leave.LeaveRequestId" />
+                                <button type="submit" class="btn btn-danger btn-sm">Reject</button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
